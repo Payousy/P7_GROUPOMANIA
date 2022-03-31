@@ -1,0 +1,37 @@
+sequelize model:create --attributes "email:string username:string password:string bio:string isAdmin:boolean" --name User 
+sequelize model:create --attributes "idUSERS:integer message:string image:string" --name Message 
+sequelize model:create --attributes "idUSERS:integer idPUBLICATIONS:integer comment:string" --name Commentaire
+
+
+static associate(models) {
+      // define association here
+      models.Commentaire.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      })
+      models.Commentaire.belongsTo(models.Publication, {
+        foreignKey: {
+          allowNull: false
+        }
+      })
+    }
+
+
+    UserId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:{
+          model: 'Users',
+          key: 'id'
+        }
+      },
+
+      UserId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:{
+          model: 'Users',
+          key: 'id'
+        }
+      },
